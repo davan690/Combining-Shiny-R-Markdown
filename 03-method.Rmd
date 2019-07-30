@@ -1,3 +1,239 @@
 # Methods
 
-We describe our methods in this chapter.
+```{r setup, include=FALSE}
+rm(list = ls())
+library(readxl)
+library(tidyverse)
+library(janitor)
+library(stringr)
+library(plotly)
+library(flexdashboard)
+library(RColorBrewer)
+```
+
+## Flashboards
+
+Flexdashboards in RMarkdown
+
+```{r, chunk1}
+#read and clean data
+nyc_inspections <- 
+  read_csv("./data/DOHMH_New_York_City_Restaurant_Inspection_Results.csv.gz", 
+                           col_types = cols(building = col_character()),
+                           na = c("NA", "N/A")) %>%
+  clean_names() %>%
+  filter(grade %in% c("A", "B", "C"),
+         boro != "Missing") %>% 
+  mutate(inspection_num = row_number(),
+         boro = str_to_title(boro)) %>% 
+  select(inspection_num, boro, grade, score, critical_flag, cuisine_description)
+```
+
+### Grade A Percentage vs Average Score ScatterPlot
+
+```{r, chunk2, message = FALSE, warning = FALSE}
+colourCount = length(unique(nyc_inspections$boro))
+getPalette = colorRampPalette(brewer.pal(9, "Set2"))
+
+nyc_inspections %>%
+  group_by(boro, cuisine_description) %>%
+  summarise(aver_score = mean(score),
+            num_inspections = n(),
+            A_num = sum(grade == "A"),
+            A_percent = sum(grade == "A")/n(),
+            critaical_percent = sum(grade == "A")/n()) %>%
+  mutate(text_label = str_c("Boro: ", boro, '\nCuisine: ', cuisine_description, 
+                            '\nnumber of inspection:', num_inspections, '\nnumber of A:', A_num,
+                            '\n A%:', paste(round(A_percent*100,digits = 2),"%",sep = "")), 
+                            '\n critical%:', paste(round(critaical_percent*100,digits = 2),"%",sep = "")) %>%
+  plot_ly(x = ~A_percent, y = ~aver_score, type = "scatter", mode = "markers",   
+          alpha = 0.7, color = ~boro, text = ~text_label)
+
+
+```
+
+### Boxplot of Scores
+
+```{r, chunk3}
+colourCount = length(unique(nyc_inspections$boro))
+getPalette = colorRampPalette(brewer.pal(9, "Set2"))
+
+cuisine_boxplot <-
+  nyc_inspections %>%
+  filter(boro == "Manhattan") %>%
+  group_by(cuisine_description) %>%
+  summarise(num_inspections = n()) %>%
+  top_n(5, num_inspections) %>%
+  pull(cuisine_description)
+
+nyc_inspections %>%
+  filter(boro == "Manhattan",
+         cuisine_description %in% cuisine_boxplot) %>%
+  plot_ly(y = ~score, color = ~cuisine_description, type = "box", colors = "Set2")
+```
+
+### Bar-plot for Average Scores by Cuisine
+
+```{r, chunk4, message = FALSE, warning =FALSE}
+nyc_inspections %>%
+  group_by(boro, cuisine_description) %>%
+  summarise(aver_score = mean(score),
+            num_inspections = n(),
+            A_num = sum(grade == "A"),
+            A_percent = sum(grade == "A")/n(),
+            critaical_percent = sum(grade == "A")/n()) %>%
+  mutate(text_label = str_c("Boro: ", boro, '\nCuisine: ', cuisine_description, 
+                            '\nnumber of inspection:', num_inspections, '\nnumber of A:', A_num,
+                            '\n A%:', paste(round(A_percent*100, digits = 2),"%",sep = "")), 
+                            '\n critical%:', paste(round(critaical_percent*100, digits = 2),"%",sep = "")) %>%
+  filter(boro == "Manhattan") %>%
+  plot_ly(x = ~cuisine_description, y = ~aver_score, color = ~cuisine_description, type = "bar", text = ~text_label) %>%
+  layout(showlegend = FALSE)
+```
+
+
+
+### Trip planning html-widget
+
+https://beta.rstudioconnect.com/jjallaire/htmlwidgets-showcase-storyboard/htmlwidgets-showcase-storyboard.html
+
+https://rstudio.github.io/leaflet/
+
+## Shiny
+
+We have briefly introduced Shiny\index{Shiny} documents in Section \@ref(intro-shiny). Shiny is a very powerful framework for building web applications based on R. It is out of the scope of this book to make a comprehensive introduction to Shiny (which is too big a topic). We recommend that readers who are not familiar with Shiny learn more about it from the website https://shiny.rstudio.com before reading this chapter.
+
+Unlike the more traditional workflow of creating static reports, you can create documents that allow your readers to change the parameters underlying your analysis and see the results immediately in Shiny R Markdown documents. In the example shown in Figure \@ref(fig:shiny), the histogram will be automatically updated to reflect the number of bins selected by the reader.
+
+A picture is worth a thousand words, and a Shiny document can potentially show you a thousand pictures as you interact with it. The readers are no longer tied to the fixed analysis and conclusions in the report. They may explore other possibilities by themselves, and possibly make new discoveries or draw different conclusions.
+
+### Getting started
+
+You can turn any _HTML-oriented_ R Markdown documents to Shiny documents by adding `runtime: shiny` to the YAML metadata as a _top-level_ field, e.g.,
+
+```yaml
+---
+title: "Shiny Document"
+output: html_document
+runtime: shiny
+---
+```
+
+Note that the output format of the R Markdown document must be an HTML format. That is, the document should generate a web page (a `*.html` file). Non-HTML formats such as `pdf_document` and `word_document` will not work with the Shiny runtime. Please also note that some presentation formats are also HTML formats, such as `ioslides_presentation` and `slidy_presentation`.
+
+You can also create a new Shiny document from the RStudio menu `File -> New File -> R Markdown`, and choose the document type "Shiny" (see Figure \@ref(fig:shiny-new-document)).
+
+```{r shiny-new-document, echo=FALSE, fig.cap='Create a new Shiny document in RStudio.', out.width='100%'}
+knitr::include_graphics('images/shiny-new-document.png', dpi = NA)
+```
+
+To run a Shiny document in RStudio, you need to click the button "Run Document" on the editor toolbar (RStudio will automatically replace the "Knit" button with "Run Document" when it detects a Shiny document). If you do not use RStudio, or want to run the document in the R console for troubleshooting, you can call the function `rmarkdown::run()` and pass the filename to it.
+
+You can embed Shiny inputs and outputs in your document. Outputs are automatically updated whenever inputs change. In the following example, we create a numeric input (`numericInput`) with the name `rows`, and then refer to its value via `input$rows` when generating output:
+
+````markdown
+`r ''````{r, echo=FALSE}
+numericInput("rows", "How many cars?", 5)
+
+renderTable({
+  head(cars, input$rows)
+})
+```
+````
+
+```{r shiny-table, echo=FALSE, fig.cap='Increase the number of rows in the table in a Shiny document.', out.width='100%'}
+knitr::include_graphics('images/shiny-table.png', dpi = NA)
+```
+
+In the above example, the output code was wrapped in a call to `renderTable()`. There are many other render functions in Shiny that can be used for plots, printed R output, and more. This example uses `renderPlot()` to create dynamic plot output:
+
+````markdown
+`r ''````{r, echo=FALSE}
+sliderInput("bins", "Number of bins:", 30, min = 1, max = 50)
+
+renderPlot({
+  x    = faithful[, 2]  # Old Faithful Geyser data
+  bins = seq(min(x), max(x), length.out = input$bins + 1)
+
+  # draw the histogram with the specified number of bins
+  hist(x, breaks = bins, col = 'darkgray', border = 'white')
+})
+```
+````
+
+```{r shiny-plot, echo=FALSE, fig.cap='Change the number of bins of a histogram in a Shiny document.', out.width='100%'}
+knitr::include_graphics('images/shiny-plot.png', dpi = NA)
+```
+
+## Deployment {#shiny-deploy}
+
+Shiny documents must be supported by a live R session running behind the scenes. When you run a Shiny document locally, it uses your local R session. Usually only you can see and interact with the document. If you want to share the document with people who do not have R installed, or do not want to run the document locally, you will have to deploy the document on a server, and share the URL of the document. Then other people only need a web browser to visit your document.
+
+There are two ways to deploy a Shiny document. You can either use a hosted service provided by RStudio, or set up your own server. The first way is technically easier, but sometimes you may not be allowed to use an external hosted service, so you have to install the required software (Shiny Server or RStudio Connect)\index{Shiny Server}\index{RStudio Connect} on your own server to deploy the Shiny documents.
+
+### ShinyApps.io
+
+You can publish Shiny documents to the ShinyApps (https://shinyapps.io) hosted service. To do this you, should ensure that you have:
+
+1. An account on ShinyApps (use the signup form to request an account).
+
+2. A latest version of the **rsconnect** R package. You can install this as follows:
+
+```r
+#install.packages("rsconnect")
+```
+
+You can then deploy an interactive Shiny document in the same way that you currently deploy normal Shiny applications. From the working directory containing the document(s), just execute:
+
+```r
+#rsconnect::deployApp()
+```
+
+If you are using RStudio, you can also use the `Publish` button available at the top-right of the window when running a Shiny document (see Figure \@ref(fig:shiny-deploy)).
+
+```{r shiny-deploy, echo=FALSE, fig.cap='Deploy a Shiny document to ShinyApps.io.', out.width='100%'}
+#knitr::include_graphics('images/shiny-deploy.png', dpi = NA)
+```
+
+If there is a file named `index.Rmd` in the directory, it will be served as the default document for that directory, otherwise an explicit path to the Rmd file should be specified in the URL if you want to visit this Rmd document. For example, the URL for `index.Rmd` deployed to ShinyApps may be of the form `https://example.shinyapps.io/appName/`, and the URL for `test.Rmd` may be of the form `https://example.shinyapps.io/appName/test.Rmd`.
+
+### Shiny Server / RStudio Connect
+
+Both Shiny Server (https://www.rstudio.com/products/shiny/shiny-server/) and RStudio Connect (https://www.rstudio.com/products/connect/) can be used to publish Shiny documents. They require knowledge about Linux. Installing and configuring them should normally be a task for your system administrator if you are not familiar with Linux or do not have the privilege.
+
+## Embedded Shiny apps {#shiny-embedded}
+
+Besides embedding individual Shiny inputs and outputs in R Markdown, it is also possible to embed a standalone Shiny application within a document. There are two ways to do this:
+
+1. Defining the application inline using the `shinyApp()` function; or
+
+1. Referring to an external application directory using the `shinyAppDir()` function.
+
+Both functions are available in the **shiny** package (not **rmarkdown**), which will be automatically loaded when `runtime: shiny` is specified in the YAML metadata of the document, so you do not have to call `library(shiny)` to load **shiny** (although it does not hurt if you load a package twice).
+
+### Embedding Shiny apps via their URLs in R Markdown output - Overview
+
+- With the knitr package, the functions knitr::include_url() and include_app() can be used by inserting an iframe or a screenshot/image in the output. iframes are basically a box on one web page to embed another web page. knitr::include_app() was designed for embedding Shiny apps via their URLs in RMD output.
+- [https://bookdown.org/yihui/bookdown/web-pages-and-shiny-apps.html](https://bookdown.org/yihui/bookdown/web-pages-and-shiny-apps.html)
+
+
+### Embedding Shiny apps via their URLs in R Markdown output - Examples
+
+- RMD HTML Output - http://r4ds.had.co.nz/r-markdown-formats.html
+- https://bookdown.org/
+- http://rmarkdown.rstudio.com/rmarkdown_websites.html
+- https://github.com/rstudio/blogdown
+  
+### Shiny Components in rtutor - Overview & Examples
+- rtutor package makes it easy to turn any R Markdown document into an interactive tutorial
+- rtutor package uses runtime: shiny_prerendered to turn regular R Markdown documents into live tutorials
+- https://rstudio.github.io/rtutor/index.html
+- https://rstudio.github.io/rtutor/index.html#shiny_components
+- https://rstudio.github.io/rtutor/examples.html
+
+### Further Reading
+
+- http://rmarkdown.rstudio.com/authoring_shiny_prerendered.html
+- http://colorado.rstudio.com:3939/content/188/ by Edgar Ruiz
+- [http://rmarkdown.rstudio.com/authoring_shiny_advanced.html](http://rmarkdown.rstudio.com/authoring_shiny_advanced.html)
+
