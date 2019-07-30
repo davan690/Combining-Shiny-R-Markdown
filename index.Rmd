@@ -1,5 +1,5 @@
 ---
-title: "Invasive species modelling in New Zealand forests"
+title: "Combining shiny and RMarkdown"
 author: "Anthony Davidson"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -9,7 +9,7 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: rstudio/bookdown-demo
-description: "This is a minimal example of using the bookdown package to write my phd thesis"
+description: "A collection of resources for Shiny and RMarkdown"
 ---
 
 # Prerequisites
