@@ -1,4 +1,4 @@
-# Literature
+# Literature {#literature}
 
 Here is a review of existing methods. To begin with I have simply forked the rbooks repo and started to add to this along with the shiny library:
 

@@ -1,6 +1,6 @@
 ---
 title: "Combining shiny and RMarkdown"
-author: "Anthony Davidson"
+author: "Anthony Davidson from Philip Bowsher @rstudio"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -14,7 +14,7 @@ description: "A collection of resources for Shiny and RMarkdown"
 
 # Prerequisites
 
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
+This book is build off the _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
 
 The **bookdown** package can be installed from CRAN or Github:
 
@@ -36,16 +36,6 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
 ), 'packages.bib')
 ```
-
-## This template
-
-For this template I have divided the "chapters" into key sections needed to build and troubleshoot bookdown for graduate research projects. The aim of this bookdown is to provide a working archive of code for the `bookdown` package use with the statistics network.
-
-You can reference chapters like so:
-
-- Chapter \@ref(intro)
-- Chapter \@ref(methods)
-- Chapter \@ref(literature)
 
 ## Additional notes
 

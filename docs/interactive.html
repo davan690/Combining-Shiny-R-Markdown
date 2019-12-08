@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Combining shiny and RMarkdown</title>
+  <title>Chapter 3 Interactive documents | Combining shiny and RMarkdown</title>
   <meta name="description" content="A collection of resources for Shiny and RMarkdown" />
   <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Combining shiny and RMarkdown" />
+  <meta property="og:title" content="Chapter 3 Interactive documents | Combining shiny and RMarkdown" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Combining shiny and RMarkdown" />
+  <meta name="twitter:title" content="Chapter 3 Interactive documents | Combining shiny and RMarkdown" />
   
   <meta name="twitter:description" content="A collection of resources for Shiny and RMarkdown" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="intro.html"/>
+<link rel="prev" href="intro.html"/>
+<link rel="next" href="literature.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -220,25 +220,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Combining shiny and RMarkdown</h1>
-<p class="author"><em>Anthony Davidson from Philip Bowsher <span class="citation">(<span class="citeproc-not-found" data-reference-id="rstudio"><strong>???</strong></span>)</span></em></p>
-<p class="date"><em>2019-11-15</em></p>
+<div id="interactive" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Interactive documents</h1>
+<ul>
+<li>R Markdown leverages Shiny at its core to make this possible. Add runtime: shiny to the document’s YAML header.</li>
+<li><a href="http://rmarkdown.rstudio.com/authoring_shiny.html">http://rmarkdown.rstudio.com/authoring_shiny.html</a></li>
+<li><a href="http://shiny.rstudio.com/articles/interactive-docs.html">http://shiny.rstudio.com/articles/interactive-docs.html</a></li>
+<li><a href="https://blog.rstudio.org/2014/06/19/interactive-documents-an-incredibly-easy-way-to-use-shiny/">https://blog.rstudio.org/2014/06/19/interactive-documents-an-incredibly-easy-way-to-use-shiny/</a></li>
+<li><a href="http://rmarkdown.rstudio.com/flexdashboard/shiny.html">http://rmarkdown.rstudio.com/flexdashboard/shiny.html</a></li>
+<li>As of Spring 17 - Shiny apps can’t currently be embedded into R Notebooks.</li>
+</ul>
+<div id="combining-rmarkdown-and-shiny" class="section level2">
+<h2><span class="header-section-number">3.1</span> Combining RMarkdown and Shiny</h2>
+<p>Interactive Documents are an R Markdown file that contains Shiny components and can be an app or used within a report</p>
+<div id="types-of-interactive-documents" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Types of Interactive Documents:</h3>
+<ul>
+<li><ol style="list-style-type: decimal">
+<li>RMD Interactive Document/Report with Shiny components</li>
+</ol></li>
+<li>Example: Demo by using File &gt; New &gt; RMarkdown &gt; Shiny &gt; Shiny Document</li>
+<li><ol start="2" style="list-style-type: decimal">
+<li>HTML presentations with Embed Shiny components</li>
+</ol></li>
+<li>Example: Demo by using File &gt; New &gt; RMarkdown &gt; Shiny &gt; Shiny Presentation</li>
+<li><em>1/2 Note</em>. It is also possible to embed an entire shiny application within an R Markdown document using the <code>shinyAppDir</code> function or <code>shinyAppFile</code> or source</li>
+<li><a href="http://rmarkdown.rstudio.com/authoring_embedded_shiny.html" class="uri">http://rmarkdown.rstudio.com/authoring_embedded_shiny.html</a></li>
+<li><ol start="3" style="list-style-type: decimal">
+<li>R Markdown report as Shiny app</li>
+</ol></li>
+<li>Example <a href="https://jjallaire.shinyapps.io/shiny-ggplot2-brushing/">https://jjallaire.shinyapps.io/shiny-ggplot2-brushing/</a></li>
+</ul>
 </div>
-<div id="prerequisites" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Prerequisites</h1>
-<p>This book is build off the <em>sample</em> book written in <strong>Markdown</strong>. You can use anything that Pandoc’s Markdown supports, e.g., a math equation <span class="math inline">\(a^2 + b^2 = c^2\)</span>.</p>
-<p>The <strong>bookdown</strong> package can be installed from CRAN or Github:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1"></a><span class="co"># install.packages(&quot;bookdown&quot;)</span></span>
-<span id="cb1-2"><a href="index.html#cb1-2"></a><span class="co"># or the development version</span></span>
-<span id="cb1-3"><a href="index.html#cb1-3"></a><span class="co"># devtools::install_github(&quot;rstudio/bookdown&quot;)</span></span>
-<span id="cb1-4"><a href="index.html#cb1-4"></a><span class="kw">library</span>(bookdown)</span>
-<span id="cb1-5"><a href="index.html#cb1-5"></a><span class="kw">library</span>(shiny)</span></code></pre></div>
-<p>Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading <code>#</code>.</p>
-<p>To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <a href="https://yihui.name/tinytex/" class="uri">https://yihui.name/tinytex/</a>.</p>
-<div id="additional-notes" class="section level2">
-<h2><span class="header-section-number">1.1</span> Additional notes</h2>
-<p>… check out the website for more resources <a href="https://www.ssnhub.com">here</a></p>
+</div>
+<div id="include-markdown-content-in-a-shiny-app" class="section level2">
+<h2><span class="header-section-number">3.2</span> Include Markdown content in a Shiny app</h2>
+<ul>
+<li>It’s possible to include files with HTML, text, or Markdown content in a Shiny app.</li>
+<li><a href="http://shiny.rstudio.com/gallery/including-html-text-and-markdown-files.html">http://shiny.rstudio.com/gallery/including-html-text-and-markdown-files.html</a></li>
+<li>The includeMarkdown function requires the markdown package.</li>
+<li><a href="https://shiny.rstudio.com/reference/shiny/latest/include.html">https://shiny.rstudio.com/reference/shiny/latest/include.html</a></li>
+</ul>
+</div>
+<div id="include-markdown-content-in-a-shiny-app---example" class="section level2">
+<h2><span class="header-section-number">3.3</span> Include Markdown content in a Shiny app - Example</h2>
+<ul>
+<li><a href="https://github.com/abhik1368/openfda-dashboard">https://github.com/abhik1368/openfda-dashboard</a></li>
+<li><a href="https://raw.githubusercontent.com/abhik1368/openfda-dashboard/master/ui.R">https://raw.githubusercontent.com/abhik1368/openfda-dashboard/master/ui.R</a></li>
+<li><a href="https://diabetescheck.shinyapps.io/openfda-dashboard/">https://diabetescheck.shinyapps.io/openfda-dashboard/</a></li>
+</ul>
 
 </div>
 </div>
@@ -247,8 +277,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="literature.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -280,7 +310,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/davan690/Combining-Shiny-R-Markdown/docs/index.Rmd",
+"link": "https://github.com/davan690/Combining-Shiny-R-Markdown/docs/01_1-interactive_documents.Rmd",
 "text": "Edit"
 },
 "history": {

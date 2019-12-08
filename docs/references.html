@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>References | Combining shiny and RMarkdown</title>
   <meta name="description" content="A collection of resources for Shiny and RMarkdown" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
   <meta property="og:title" content="References | Combining shiny and RMarkdown" />
   <meta property="og:type" content="book" />
@@ -21,17 +21,17 @@
   <meta name="twitter:description" content="A collection of resources for Shiny and RMarkdown" />
   
 
-<meta name="author" content="Anthony Davidson" />
+<meta name="author" content="Anthony Davidson from Philip Bowsher (???)" />
 
 
-<meta name="date" content="2019-07-31" />
+<meta name="date" content="2019-11-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="summary.html">
+<link rel="prev" href="summary.html"/>
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -40,6 +40,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -47,7 +48,9 @@
 
 
 
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
@@ -57,9 +60,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -68,14 +71,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -84,9 +89,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -136,62 +141,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#this-template"><i class="fa fa-check"></i><b>1.1</b> This template</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#additional-notes"><i class="fa fa-check"></i><b>1.2</b> Additional notes</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#additional-notes"><i class="fa fa-check"></i><b>1.1</b> Additional notes</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
-<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#interactive-documents---overview"><i class="fa fa-check"></i><b>2.1</b> Interactive Documents - Overview</a></li>
-<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#interactive-documents---an-r-markdown-file-that-contains-shiny-components-and-can-be-an-app-or-used-within-a-report"><i class="fa fa-check"></i><b>2.2</b> Interactive Documents - an R Markdown file that contains Shiny components and can be an app or used within a report</a></li>
-<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#include-markdown-content-in-a-shiny-app---overview"><i class="fa fa-check"></i><b>2.3</b> Include Markdown content in a Shiny app - Overview</a></li>
-<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#include-markdown-content-in-a-shiny-app---example"><i class="fa fa-check"></i><b>2.4</b> Include Markdown content in a Shiny app - Example</a></li>
-<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#generating-downloadable-reports-from-shiny-app"><i class="fa fa-check"></i><b>2.5</b> Generating downloadable reports from Shiny app</a></li>
-<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#generating-downloadable-reports-from-shiny-app---example"><i class="fa fa-check"></i><b>2.6</b> Generating downloadable reports from Shiny app - Example</a></li>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#generating-downloadable-reports-from-shiny-app"><i class="fa fa-check"></i><b>2.1</b> Generating downloadable reports from Shiny app</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#generating-downloadable-reports-from-shiny-app---example"><i class="fa fa-check"></i><b>2.2</b> Generating downloadable reports from Shiny app - Example</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>3</b> Literature</a><ul>
-<li class="chapter" data-level="3.1" data-path="literature.html"><a href="literature.html#beginner-books"><i class="fa fa-check"></i><b>3.1</b> Beginner Books</a></li>
-<li class="chapter" data-level="3.2" data-path="literature.html"><a href="literature.html#advanced-books"><i class="fa fa-check"></i><b>3.2</b> Advanced Books</a></li>
-<li class="chapter" data-level="3.3" data-path="literature.html"><a href="literature.html#data-science"><i class="fa fa-check"></i><b>3.3</b> Data Science</a></li>
-<li class="chapter" data-level="3.4" data-path="literature.html"><a href="literature.html#finance"><i class="fa fa-check"></i><b>3.4</b> Finance</a></li>
-<li class="chapter" data-level="3.5" data-path="literature.html"><a href="literature.html#machine-learning"><i class="fa fa-check"></i><b>3.5</b> Machine Learning</a></li>
-<li class="chapter" data-level="3.6" data-path="literature.html"><a href="literature.html#r-development"><i class="fa fa-check"></i><b>3.6</b> R Development</a></li>
-<li class="chapter" data-level="3.7" data-path="literature.html"><a href="literature.html#reports"><i class="fa fa-check"></i><b>3.7</b> Reports</a></li>
-<li class="chapter" data-level="3.8" data-path="literature.html"><a href="literature.html#visualization"><i class="fa fa-check"></i><b>3.8</b> Visualization</a></li>
+<li class="chapter" data-level="3" data-path="interactive.html"><a href="interactive.html"><i class="fa fa-check"></i><b>3</b> Interactive documents</a><ul>
+<li class="chapter" data-level="3.1" data-path="interactive.html"><a href="interactive.html#combining-rmarkdown-and-shiny"><i class="fa fa-check"></i><b>3.1</b> Combining RMarkdown and Shiny</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="interactive.html"><a href="interactive.html#types-of-interactive-documents"><i class="fa fa-check"></i><b>3.1.1</b> Types of Interactive Documents:</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a><ul>
-<li class="chapter" data-level="4.1" data-path="methods.html"><a href="methods.html#flashboards"><i class="fa fa-check"></i><b>4.1</b> Flashboards</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="methods.html"><a href="methods.html#grade-a-percentage-vs-average-score-scatterplot"><i class="fa fa-check"></i><b>4.1.1</b> Grade A Percentage vs Average Score ScatterPlot</a></li>
-<li class="chapter" data-level="4.1.2" data-path="methods.html"><a href="methods.html#boxplot-of-scores"><i class="fa fa-check"></i><b>4.1.2</b> Boxplot of Scores</a></li>
-<li class="chapter" data-level="4.1.3" data-path="methods.html"><a href="methods.html#bar-plot-for-average-scores-by-cuisine"><i class="fa fa-check"></i><b>4.1.3</b> Bar-plot for Average Scores by Cuisine</a></li>
-<li class="chapter" data-level="4.1.4" data-path="methods.html"><a href="methods.html#trip-planning-html-widget"><i class="fa fa-check"></i><b>4.1.4</b> Trip planning html-widget</a></li>
+<li class="chapter" data-level="3.2" data-path="interactive.html"><a href="interactive.html#include-markdown-content-in-a-shiny-app"><i class="fa fa-check"></i><b>3.2</b> Include Markdown content in a Shiny app</a></li>
+<li class="chapter" data-level="3.3" data-path="interactive.html"><a href="interactive.html#include-markdown-content-in-a-shiny-app---example"><i class="fa fa-check"></i><b>3.3</b> Include Markdown content in a Shiny app - Example</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="methods.html"><a href="methods.html#shiny"><i class="fa fa-check"></i><b>4.2</b> Shiny</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="methods.html"><a href="methods.html#getting-started"><i class="fa fa-check"></i><b>4.2.1</b> Getting started</a></li>
+<li class="chapter" data-level="4" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>4</b> Literature</a><ul>
+<li class="chapter" data-level="4.1" data-path="literature.html"><a href="literature.html#beginner-books"><i class="fa fa-check"></i><b>4.1</b> Beginner Books</a></li>
+<li class="chapter" data-level="4.2" data-path="literature.html"><a href="literature.html#advanced-books"><i class="fa fa-check"></i><b>4.2</b> Advanced Books</a></li>
+<li class="chapter" data-level="4.3" data-path="literature.html"><a href="literature.html#data-science"><i class="fa fa-check"></i><b>4.3</b> Data Science</a></li>
+<li class="chapter" data-level="4.4" data-path="literature.html"><a href="literature.html#finance"><i class="fa fa-check"></i><b>4.4</b> Finance</a></li>
+<li class="chapter" data-level="4.5" data-path="literature.html"><a href="literature.html#machine-learning"><i class="fa fa-check"></i><b>4.5</b> Machine Learning</a></li>
+<li class="chapter" data-level="4.6" data-path="literature.html"><a href="literature.html#r-development"><i class="fa fa-check"></i><b>4.6</b> R Development</a></li>
+<li class="chapter" data-level="4.7" data-path="literature.html"><a href="literature.html#reports"><i class="fa fa-check"></i><b>4.7</b> Reports</a></li>
+<li class="chapter" data-level="4.8" data-path="literature.html"><a href="literature.html#visualization"><i class="fa fa-check"></i><b>4.8</b> Visualization</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="methods.html"><a href="methods.html#shiny-deploy"><i class="fa fa-check"></i><b>4.3</b> Deployment</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="methods.html"><a href="methods.html#shinyapps.io"><i class="fa fa-check"></i><b>4.3.1</b> ShinyApps.io</a></li>
-<li class="chapter" data-level="4.3.2" data-path="methods.html"><a href="methods.html#shiny-server-rstudio-connect"><i class="fa fa-check"></i><b>4.3.2</b> Shiny Server / RStudio Connect</a></li>
+<li class="chapter" data-level="5" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>5</b> Methods</a><ul>
+<li class="chapter" data-level="5.1" data-path="methods.html"><a href="methods.html#flashboards"><i class="fa fa-check"></i><b>5.1</b> Flashboards</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="methods.html"><a href="methods.html#grade-a-percentage-vs-average-score-scatterplot"><i class="fa fa-check"></i><b>5.1.1</b> Grade A Percentage vs Average Score ScatterPlot</a></li>
+<li class="chapter" data-level="5.1.2" data-path="methods.html"><a href="methods.html#boxplot-of-scores"><i class="fa fa-check"></i><b>5.1.2</b> Boxplot of Scores</a></li>
+<li class="chapter" data-level="5.1.3" data-path="methods.html"><a href="methods.html#bar-plot-for-average-scores-by-cuisine"><i class="fa fa-check"></i><b>5.1.3</b> Bar-plot for Average Scores by Cuisine</a></li>
+<li class="chapter" data-level="5.1.4" data-path="methods.html"><a href="methods.html#trip-planning-html-widget"><i class="fa fa-check"></i><b>5.1.4</b> Trip planning html-widget</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="methods.html"><a href="methods.html#shiny-embedded"><i class="fa fa-check"></i><b>4.4</b> Embedded Shiny apps</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="methods.html"><a href="methods.html#embedding-shiny-apps-via-their-urls-in-r-markdown-output---overview"><i class="fa fa-check"></i><b>4.4.1</b> Embedding Shiny apps via their URLs in R Markdown output - Overview</a></li>
-<li class="chapter" data-level="4.4.2" data-path="methods.html"><a href="methods.html#embedding-shiny-apps-via-their-urls-in-r-markdown-output---examples"><i class="fa fa-check"></i><b>4.4.2</b> Embedding Shiny apps via their URLs in R Markdown output - Examples</a></li>
-<li class="chapter" data-level="4.4.3" data-path="methods.html"><a href="methods.html#shiny-components-in-rtutor---overview-examples"><i class="fa fa-check"></i><b>4.4.3</b> Shiny Components in rtutor - Overview &amp; Examples</a></li>
-<li class="chapter" data-level="4.4.4" data-path="methods.html"><a href="methods.html#further-reading"><i class="fa fa-check"></i><b>4.4.4</b> Further Reading</a></li>
+<li class="chapter" data-level="5.2" data-path="methods.html"><a href="methods.html#shiny"><i class="fa fa-check"></i><b>5.2</b> Shiny</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="methods.html"><a href="methods.html#getting-started"><i class="fa fa-check"></i><b>5.2.1</b> Getting started</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="methods.html"><a href="methods.html#shiny-deploy"><i class="fa fa-check"></i><b>5.3</b> Deployment</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="methods.html"><a href="methods.html#shinyapps.io"><i class="fa fa-check"></i><b>5.3.1</b> ShinyApps.io</a></li>
+<li class="chapter" data-level="5.3.2" data-path="methods.html"><a href="methods.html#shiny-server-rstudio-connect"><i class="fa fa-check"></i><b>5.3.2</b> Shiny Server / RStudio Connect</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="methods.html"><a href="methods.html#shiny-embedded"><i class="fa fa-check"></i><b>5.4</b> Embedded Shiny apps</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="methods.html"><a href="methods.html#embedding-shiny-apps-via-their-urls-in-r-markdown-output---overview"><i class="fa fa-check"></i><b>5.4.1</b> Embedding Shiny apps via their URLs in R Markdown output - Overview</a></li>
+<li class="chapter" data-level="5.4.2" data-path="methods.html"><a href="methods.html#embedding-shiny-apps-via-their-urls-in-r-markdown-output---examples"><i class="fa fa-check"></i><b>5.4.2</b> Embedding Shiny apps via their URLs in R Markdown output - Examples</a></li>
+<li class="chapter" data-level="5.4.3" data-path="methods.html"><a href="methods.html#shiny-components-in-rtutor---overview-examples"><i class="fa fa-check"></i><b>5.4.3</b> Shiny Components in rtutor - Overview &amp; Examples</a></li>
+<li class="chapter" data-level="5.4.4" data-path="methods.html"><a href="methods.html#further-reading"><i class="fa fa-check"></i><b>5.4.4</b> Further Reading</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a><ul>
-<li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="applications.html"><a href="applications.html#grade-a-percentage-vs-average-score-scatterplot-1"><i class="fa fa-check"></i><b>5.1.1</b> Grade A Percentage vs Average Score ScatterPlot</a></li>
-<li class="chapter" data-level="5.1.2" data-path="applications.html"><a href="applications.html#boxplot-of-scores-1"><i class="fa fa-check"></i><b>5.1.2</b> Boxplot of Scores</a></li>
-<li class="chapter" data-level="5.1.3" data-path="applications.html"><a href="applications.html#bar-plot-for-average-scores-by-cuisine-1"><i class="fa fa-check"></i><b>5.1.3</b> Bar-plot for Average Scores by Cuisine</a></li>
+<li class="chapter" data-level="6" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>6</b> Applications</a><ul>
+<li class="chapter" data-level="6.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>6.1</b> Example one</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="applications.html"><a href="applications.html#grade-a-percentage-vs-average-score-scatterplot-1"><i class="fa fa-check"></i><b>6.1.1</b> Grade A Percentage vs Average Score ScatterPlot</a></li>
+<li class="chapter" data-level="6.1.2" data-path="applications.html"><a href="applications.html#boxplot-of-scores-1"><i class="fa fa-check"></i><b>6.1.2</b> Boxplot of Scores</a></li>
+<li class="chapter" data-level="6.1.3" data-path="applications.html"><a href="applications.html#bar-plot-for-average-scores-by-cuisine-1"><i class="fa fa-check"></i><b>6.1.3</b> Bar-plot for Average Scores by Cuisine</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
-<li class="chapter" data-level="5.3" data-path="applications.html"><a href="applications.html#flashboard-examples"><i class="fa fa-check"></i><b>5.3</b> Flashboard examples</a></li>
-<li class="chapter" data-level="5.4" data-path="applications.html"><a href="applications.html#shiny-showcases"><i class="fa fa-check"></i><b>5.4</b> Shiny showcases</a></li>
+<li class="chapter" data-level="6.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>6.2</b> Example two</a></li>
+<li class="chapter" data-level="6.3" data-path="applications.html"><a href="applications.html#flashboard-examples"><i class="fa fa-check"></i><b>6.3</b> Flashboard examples</a></li>
+<li class="chapter" data-level="6.4" data-path="applications.html"><a href="applications.html#shiny-showcases"><i class="fa fa-check"></i><b>6.4</b> Shiny showcases</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>6</b> Summary</a></li>
+<li class="chapter" data-level="7" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>7</b> Summary</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a><ul>
-<li class="chapter" data-level="6.0.1" data-path="references.html"><a href="references.html#further-reading-1"><i class="fa fa-check"></i><b>6.0.1</b> Further Reading</a></li>
-<li class="chapter" data-level="6.0.2" data-path="references.html"><a href="references.html#license"><i class="fa fa-check"></i><b>6.0.2</b> License</a></li>
+<li class="chapter" data-level="7.0.1" data-path="references.html"><a href="references.html#further-reading-1"><i class="fa fa-check"></i><b>7.0.1</b> Further Reading</a></li>
+<li class="chapter" data-level="7.0.2" data-path="references.html"><a href="references.html#license"><i class="fa fa-check"></i><b>7.0.2</b> License</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/davan690/Combining-Shiny-R-Markdown" target="blank">Published with bookdown</a></li>
@@ -216,7 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
 <div id="further-reading-1" class="section level3">
-<h3><span class="header-section-number">6.0.1</span> Further Reading</h3>
+<h3><span class="header-section-number">7.0.1</span> Further Reading</h3>
 <ul>
 <li><a href="http://rmarkdown.rstudio.com/authoring_shiny_prerendered.html" class="uri">http://rmarkdown.rstudio.com/authoring_shiny_prerendered.html</a></li>
 <li><a href="http://colorado.rstudio.com:3939/content/188/" class="uri">http://colorado.rstudio.com:3939/content/188/</a> by Edgar Ruiz</li>
@@ -224,7 +231,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <div id="license" class="section level3">
-<h3><span class="header-section-number">6.0.2</span> License</h3>
+<h3><span class="header-section-number">7.0.2</span> License</h3>
 <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
 </div>
@@ -240,11 +247,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -287,8 +296,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

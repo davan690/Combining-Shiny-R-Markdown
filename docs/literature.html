@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Literature | Combining shiny and RMarkdown</title>
+  <title>Chapter 4 Literature | Combining shiny and RMarkdown</title>
   <meta name="description" content="A collection of resources for Shiny and RMarkdown" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Literature | Combining shiny and RMarkdown" />
+  <meta property="og:title" content="Chapter 4 Literature | Combining shiny and RMarkdown" />
   <meta property="og:type" content="book" />
   
   
@@ -16,23 +16,23 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Literature | Combining shiny and RMarkdown" />
+  <meta name="twitter:title" content="Chapter 4 Literature | Combining shiny and RMarkdown" />
   
   <meta name="twitter:description" content="A collection of resources for Shiny and RMarkdown" />
   
 
-<meta name="author" content="Anthony Davidson" />
+<meta name="author" content="Anthony Davidson from Philip Bowsher (???)" />
 
 
-<meta name="date" content="2019-07-31" />
+<meta name="date" content="2019-11-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="intro.html">
-<link rel="next" href="methods.html">
+<link rel="prev" href="interactive.html"/>
+<link rel="next" href="methods.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -40,6 +40,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -47,7 +48,9 @@
 
 
 
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
@@ -57,9 +60,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -68,14 +71,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -84,9 +89,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -136,62 +141,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#this-template"><i class="fa fa-check"></i><b>1.1</b> This template</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#additional-notes"><i class="fa fa-check"></i><b>1.2</b> Additional notes</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#additional-notes"><i class="fa fa-check"></i><b>1.1</b> Additional notes</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
-<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#interactive-documents---overview"><i class="fa fa-check"></i><b>2.1</b> Interactive Documents - Overview</a></li>
-<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#interactive-documents---an-r-markdown-file-that-contains-shiny-components-and-can-be-an-app-or-used-within-a-report"><i class="fa fa-check"></i><b>2.2</b> Interactive Documents - an R Markdown file that contains Shiny components and can be an app or used within a report</a></li>
-<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#include-markdown-content-in-a-shiny-app---overview"><i class="fa fa-check"></i><b>2.3</b> Include Markdown content in a Shiny app - Overview</a></li>
-<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#include-markdown-content-in-a-shiny-app---example"><i class="fa fa-check"></i><b>2.4</b> Include Markdown content in a Shiny app - Example</a></li>
-<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#generating-downloadable-reports-from-shiny-app"><i class="fa fa-check"></i><b>2.5</b> Generating downloadable reports from Shiny app</a></li>
-<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#generating-downloadable-reports-from-shiny-app---example"><i class="fa fa-check"></i><b>2.6</b> Generating downloadable reports from Shiny app - Example</a></li>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#generating-downloadable-reports-from-shiny-app"><i class="fa fa-check"></i><b>2.1</b> Generating downloadable reports from Shiny app</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#generating-downloadable-reports-from-shiny-app---example"><i class="fa fa-check"></i><b>2.2</b> Generating downloadable reports from Shiny app - Example</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>3</b> Literature</a><ul>
-<li class="chapter" data-level="3.1" data-path="literature.html"><a href="literature.html#beginner-books"><i class="fa fa-check"></i><b>3.1</b> Beginner Books</a></li>
-<li class="chapter" data-level="3.2" data-path="literature.html"><a href="literature.html#advanced-books"><i class="fa fa-check"></i><b>3.2</b> Advanced Books</a></li>
-<li class="chapter" data-level="3.3" data-path="literature.html"><a href="literature.html#data-science"><i class="fa fa-check"></i><b>3.3</b> Data Science</a></li>
-<li class="chapter" data-level="3.4" data-path="literature.html"><a href="literature.html#finance"><i class="fa fa-check"></i><b>3.4</b> Finance</a></li>
-<li class="chapter" data-level="3.5" data-path="literature.html"><a href="literature.html#machine-learning"><i class="fa fa-check"></i><b>3.5</b> Machine Learning</a></li>
-<li class="chapter" data-level="3.6" data-path="literature.html"><a href="literature.html#r-development"><i class="fa fa-check"></i><b>3.6</b> R Development</a></li>
-<li class="chapter" data-level="3.7" data-path="literature.html"><a href="literature.html#reports"><i class="fa fa-check"></i><b>3.7</b> Reports</a></li>
-<li class="chapter" data-level="3.8" data-path="literature.html"><a href="literature.html#visualization"><i class="fa fa-check"></i><b>3.8</b> Visualization</a></li>
+<li class="chapter" data-level="3" data-path="interactive.html"><a href="interactive.html"><i class="fa fa-check"></i><b>3</b> Interactive documents</a><ul>
+<li class="chapter" data-level="3.1" data-path="interactive.html"><a href="interactive.html#combining-rmarkdown-and-shiny"><i class="fa fa-check"></i><b>3.1</b> Combining RMarkdown and Shiny</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="interactive.html"><a href="interactive.html#types-of-interactive-documents"><i class="fa fa-check"></i><b>3.1.1</b> Types of Interactive Documents:</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a><ul>
-<li class="chapter" data-level="4.1" data-path="methods.html"><a href="methods.html#flashboards"><i class="fa fa-check"></i><b>4.1</b> Flashboards</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="methods.html"><a href="methods.html#grade-a-percentage-vs-average-score-scatterplot"><i class="fa fa-check"></i><b>4.1.1</b> Grade A Percentage vs Average Score ScatterPlot</a></li>
-<li class="chapter" data-level="4.1.2" data-path="methods.html"><a href="methods.html#boxplot-of-scores"><i class="fa fa-check"></i><b>4.1.2</b> Boxplot of Scores</a></li>
-<li class="chapter" data-level="4.1.3" data-path="methods.html"><a href="methods.html#bar-plot-for-average-scores-by-cuisine"><i class="fa fa-check"></i><b>4.1.3</b> Bar-plot for Average Scores by Cuisine</a></li>
-<li class="chapter" data-level="4.1.4" data-path="methods.html"><a href="methods.html#trip-planning-html-widget"><i class="fa fa-check"></i><b>4.1.4</b> Trip planning html-widget</a></li>
+<li class="chapter" data-level="3.2" data-path="interactive.html"><a href="interactive.html#include-markdown-content-in-a-shiny-app"><i class="fa fa-check"></i><b>3.2</b> Include Markdown content in a Shiny app</a></li>
+<li class="chapter" data-level="3.3" data-path="interactive.html"><a href="interactive.html#include-markdown-content-in-a-shiny-app---example"><i class="fa fa-check"></i><b>3.3</b> Include Markdown content in a Shiny app - Example</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="methods.html"><a href="methods.html#shiny"><i class="fa fa-check"></i><b>4.2</b> Shiny</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="methods.html"><a href="methods.html#getting-started"><i class="fa fa-check"></i><b>4.2.1</b> Getting started</a></li>
+<li class="chapter" data-level="4" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>4</b> Literature</a><ul>
+<li class="chapter" data-level="4.1" data-path="literature.html"><a href="literature.html#beginner-books"><i class="fa fa-check"></i><b>4.1</b> Beginner Books</a></li>
+<li class="chapter" data-level="4.2" data-path="literature.html"><a href="literature.html#advanced-books"><i class="fa fa-check"></i><b>4.2</b> Advanced Books</a></li>
+<li class="chapter" data-level="4.3" data-path="literature.html"><a href="literature.html#data-science"><i class="fa fa-check"></i><b>4.3</b> Data Science</a></li>
+<li class="chapter" data-level="4.4" data-path="literature.html"><a href="literature.html#finance"><i class="fa fa-check"></i><b>4.4</b> Finance</a></li>
+<li class="chapter" data-level="4.5" data-path="literature.html"><a href="literature.html#machine-learning"><i class="fa fa-check"></i><b>4.5</b> Machine Learning</a></li>
+<li class="chapter" data-level="4.6" data-path="literature.html"><a href="literature.html#r-development"><i class="fa fa-check"></i><b>4.6</b> R Development</a></li>
+<li class="chapter" data-level="4.7" data-path="literature.html"><a href="literature.html#reports"><i class="fa fa-check"></i><b>4.7</b> Reports</a></li>
+<li class="chapter" data-level="4.8" data-path="literature.html"><a href="literature.html#visualization"><i class="fa fa-check"></i><b>4.8</b> Visualization</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="methods.html"><a href="methods.html#shiny-deploy"><i class="fa fa-check"></i><b>4.3</b> Deployment</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="methods.html"><a href="methods.html#shinyapps.io"><i class="fa fa-check"></i><b>4.3.1</b> ShinyApps.io</a></li>
-<li class="chapter" data-level="4.3.2" data-path="methods.html"><a href="methods.html#shiny-server-rstudio-connect"><i class="fa fa-check"></i><b>4.3.2</b> Shiny Server / RStudio Connect</a></li>
+<li class="chapter" data-level="5" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>5</b> Methods</a><ul>
+<li class="chapter" data-level="5.1" data-path="methods.html"><a href="methods.html#flashboards"><i class="fa fa-check"></i><b>5.1</b> Flashboards</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="methods.html"><a href="methods.html#grade-a-percentage-vs-average-score-scatterplot"><i class="fa fa-check"></i><b>5.1.1</b> Grade A Percentage vs Average Score ScatterPlot</a></li>
+<li class="chapter" data-level="5.1.2" data-path="methods.html"><a href="methods.html#boxplot-of-scores"><i class="fa fa-check"></i><b>5.1.2</b> Boxplot of Scores</a></li>
+<li class="chapter" data-level="5.1.3" data-path="methods.html"><a href="methods.html#bar-plot-for-average-scores-by-cuisine"><i class="fa fa-check"></i><b>5.1.3</b> Bar-plot for Average Scores by Cuisine</a></li>
+<li class="chapter" data-level="5.1.4" data-path="methods.html"><a href="methods.html#trip-planning-html-widget"><i class="fa fa-check"></i><b>5.1.4</b> Trip planning html-widget</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="methods.html"><a href="methods.html#shiny-embedded"><i class="fa fa-check"></i><b>4.4</b> Embedded Shiny apps</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="methods.html"><a href="methods.html#embedding-shiny-apps-via-their-urls-in-r-markdown-output---overview"><i class="fa fa-check"></i><b>4.4.1</b> Embedding Shiny apps via their URLs in R Markdown output - Overview</a></li>
-<li class="chapter" data-level="4.4.2" data-path="methods.html"><a href="methods.html#embedding-shiny-apps-via-their-urls-in-r-markdown-output---examples"><i class="fa fa-check"></i><b>4.4.2</b> Embedding Shiny apps via their URLs in R Markdown output - Examples</a></li>
-<li class="chapter" data-level="4.4.3" data-path="methods.html"><a href="methods.html#shiny-components-in-rtutor---overview-examples"><i class="fa fa-check"></i><b>4.4.3</b> Shiny Components in rtutor - Overview &amp; Examples</a></li>
-<li class="chapter" data-level="4.4.4" data-path="methods.html"><a href="methods.html#further-reading"><i class="fa fa-check"></i><b>4.4.4</b> Further Reading</a></li>
+<li class="chapter" data-level="5.2" data-path="methods.html"><a href="methods.html#shiny"><i class="fa fa-check"></i><b>5.2</b> Shiny</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="methods.html"><a href="methods.html#getting-started"><i class="fa fa-check"></i><b>5.2.1</b> Getting started</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="methods.html"><a href="methods.html#shiny-deploy"><i class="fa fa-check"></i><b>5.3</b> Deployment</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="methods.html"><a href="methods.html#shinyapps.io"><i class="fa fa-check"></i><b>5.3.1</b> ShinyApps.io</a></li>
+<li class="chapter" data-level="5.3.2" data-path="methods.html"><a href="methods.html#shiny-server-rstudio-connect"><i class="fa fa-check"></i><b>5.3.2</b> Shiny Server / RStudio Connect</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="methods.html"><a href="methods.html#shiny-embedded"><i class="fa fa-check"></i><b>5.4</b> Embedded Shiny apps</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="methods.html"><a href="methods.html#embedding-shiny-apps-via-their-urls-in-r-markdown-output---overview"><i class="fa fa-check"></i><b>5.4.1</b> Embedding Shiny apps via their URLs in R Markdown output - Overview</a></li>
+<li class="chapter" data-level="5.4.2" data-path="methods.html"><a href="methods.html#embedding-shiny-apps-via-their-urls-in-r-markdown-output---examples"><i class="fa fa-check"></i><b>5.4.2</b> Embedding Shiny apps via their URLs in R Markdown output - Examples</a></li>
+<li class="chapter" data-level="5.4.3" data-path="methods.html"><a href="methods.html#shiny-components-in-rtutor---overview-examples"><i class="fa fa-check"></i><b>5.4.3</b> Shiny Components in rtutor - Overview &amp; Examples</a></li>
+<li class="chapter" data-level="5.4.4" data-path="methods.html"><a href="methods.html#further-reading"><i class="fa fa-check"></i><b>5.4.4</b> Further Reading</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a><ul>
-<li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="applications.html"><a href="applications.html#grade-a-percentage-vs-average-score-scatterplot-1"><i class="fa fa-check"></i><b>5.1.1</b> Grade A Percentage vs Average Score ScatterPlot</a></li>
-<li class="chapter" data-level="5.1.2" data-path="applications.html"><a href="applications.html#boxplot-of-scores-1"><i class="fa fa-check"></i><b>5.1.2</b> Boxplot of Scores</a></li>
-<li class="chapter" data-level="5.1.3" data-path="applications.html"><a href="applications.html#bar-plot-for-average-scores-by-cuisine-1"><i class="fa fa-check"></i><b>5.1.3</b> Bar-plot for Average Scores by Cuisine</a></li>
+<li class="chapter" data-level="6" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>6</b> Applications</a><ul>
+<li class="chapter" data-level="6.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>6.1</b> Example one</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="applications.html"><a href="applications.html#grade-a-percentage-vs-average-score-scatterplot-1"><i class="fa fa-check"></i><b>6.1.1</b> Grade A Percentage vs Average Score ScatterPlot</a></li>
+<li class="chapter" data-level="6.1.2" data-path="applications.html"><a href="applications.html#boxplot-of-scores-1"><i class="fa fa-check"></i><b>6.1.2</b> Boxplot of Scores</a></li>
+<li class="chapter" data-level="6.1.3" data-path="applications.html"><a href="applications.html#bar-plot-for-average-scores-by-cuisine-1"><i class="fa fa-check"></i><b>6.1.3</b> Bar-plot for Average Scores by Cuisine</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
-<li class="chapter" data-level="5.3" data-path="applications.html"><a href="applications.html#flashboard-examples"><i class="fa fa-check"></i><b>5.3</b> Flashboard examples</a></li>
-<li class="chapter" data-level="5.4" data-path="applications.html"><a href="applications.html#shiny-showcases"><i class="fa fa-check"></i><b>5.4</b> Shiny showcases</a></li>
+<li class="chapter" data-level="6.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>6.2</b> Example two</a></li>
+<li class="chapter" data-level="6.3" data-path="applications.html"><a href="applications.html#flashboard-examples"><i class="fa fa-check"></i><b>6.3</b> Flashboard examples</a></li>
+<li class="chapter" data-level="6.4" data-path="applications.html"><a href="applications.html#shiny-showcases"><i class="fa fa-check"></i><b>6.4</b> Shiny showcases</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>6</b> Summary</a></li>
+<li class="chapter" data-level="7" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>7</b> Summary</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a><ul>
-<li class="chapter" data-level="6.0.1" data-path="references.html"><a href="references.html#further-reading-1"><i class="fa fa-check"></i><b>6.0.1</b> Further Reading</a></li>
-<li class="chapter" data-level="6.0.2" data-path="references.html"><a href="references.html#license"><i class="fa fa-check"></i><b>6.0.2</b> License</a></li>
+<li class="chapter" data-level="7.0.1" data-path="references.html"><a href="references.html#further-reading-1"><i class="fa fa-check"></i><b>7.0.1</b> Further Reading</a></li>
+<li class="chapter" data-level="7.0.2" data-path="references.html"><a href="references.html#license"><i class="fa fa-check"></i><b>7.0.2</b> License</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/davan690/Combining-Shiny-R-Markdown" target="blank">Published with bookdown</a></li>
@@ -214,7 +221,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="literature" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> Literature</h1>
+<h1><span class="header-section-number">Chapter 4</span> Literature</h1>
 <p>Here is a review of existing methods. To begin with I have simply forked the rbooks repo and started to add to this along with the shiny library:</p>
 <p>R Books <a href="https://github.com/sindresorhus/awesome"><img src="https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg" alt="Awesome" /></a></p>
 <p>A curated list of books about different aspects and applications of <a href="https://www.r-project.org/">R</a> programming language and an attempt to modernize <a href="">R Books</a> in a more user friendly way. Inspired by <a href="">GoBooks</a>.</p>
@@ -232,69 +239,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 <div id="beginner-books" class="section level2">
-<h2><span class="header-section-number">3.1</span> Beginner Books</h2>
+<h2><span class="header-section-number">4.1</span> Beginner Books</h2>
 <div id="learning-r-amazon" class="section level4">
-<h4><span class="header-section-number">3.1.0.1</span> Learning R <a href="www.amazon.com/Learning-R-Richard-Cotton/dp/1449357105/">[Amazon]</a></h4>
+<h4><span class="header-section-number">4.1.0.1</span> Learning R <a href="www.amazon.com/Learning-R-Richard-Cotton/dp/1449357105/">[Amazon]</a></h4>
 <p><img src="http://akamaicovers.oreilly.com/images/0636920028352/cat.gif" width="200px"/></p>
 <p>Learn how to perform data analysis with the R language and software environment, even if you have little or no programming experience. With the tutorials in this hands-on guide, you’ll learn how to use the essential R tools you need to know to analyze data, including data types and programming concepts.</p>
 </div>
 <div id="hands-on-programming-with-r-amazon" class="section level4">
-<h4><span class="header-section-number">3.1.0.2</span> Hands-On Programming with R <a href="http://www.amazon.com/Hands-On-Programming-Write-Functions-Simulations/dp/1449359019">[Amazon]</a></h4>
+<h4><span class="header-section-number">4.1.0.2</span> Hands-On Programming with R <a href="http://www.amazon.com/Hands-On-Programming-Write-Functions-Simulations/dp/1449359019">[Amazon]</a></h4>
 <p><img src="http://ecx.images-amazon.com/images/I/51Hbowka72L._SX379_BO1,204,203,200_.jpg" width="200px"/></p>
 <p>Learn how to program by diving into the R language, and then use your newfound skills to solve practical data science problems. With this book, you’ ll learn how to load data, assemble and disassemble data objects, navigate R’s environment system, write your own functions, and use all of R’s programming tools.</p>
 </div>
 <div id="the-r-book-amazon" class="section level4">
-<h4><span class="header-section-number">3.1.0.3</span> The R Book <a href="http://www.amazon.com/The-Book-Michael-J-Crawley/dp/0470973927">[Amazon]</a></h4>
+<h4><span class="header-section-number">4.1.0.3</span> The R Book <a href="http://www.amazon.com/The-Book-Michael-J-Crawley/dp/0470973927">[Amazon]</a></h4>
 <p><img src="http://ecx.images-amazon.com/images/I/41NNNTouQbL._SX371_BO1,204,203,200_.jpg" width="200px"/></p>
 <p>Very massive, hugely successful and popular text presenting an extensive and comprehensive guide for all R users. Covers wide variaty of R topics in great detail with very useful examples.</p>
 </div>
 <div id="r-for-everyone-advanced-analytics-and-graphics-amazon" class="section level4">
-<h4><span class="header-section-number">3.1.0.4</span> R for Everyone: Advanced Analytics and Graphics <a href="http://www.amazon.com/Everyone-Advanced-Analytics-Graphics-Addison-Wesley/dp/0321888030">[Amazon]</a></h4>
+<h4><span class="header-section-number">4.1.0.4</span> R for Everyone: Advanced Analytics and Graphics <a href="http://www.amazon.com/Everyone-Advanced-Analytics-Graphics-Addison-Wesley/dp/0321888030">[Amazon]</a></h4>
 <p><img src="http://ecx.images-amazon.com/images/I/51Jib4uNx3L._SX393_BO1,204,203,200_.jpg" width="200px"/></p>
 <p>Drawing on his unsurpassed experience teaching new users, professional data scientist Jared P. Lander has written the perfect tutorial for anyone new to statistical programming and modeling. Organized to make learning easy and intuitive, this guide focuses on the 20 percent of R functionality you’ll need to accomplish 80 percent of modern data tasks. Book’s self-contained chapters start with the absolute basics, offering extensive hands-on practice and sample code. You’ll download and install R; navigate and use the R environment; master basic program control, data import, and manipulation; and walk through several essential tests. Then, building on this foundation, you’ll construct several complete models, both linear and nonlinear, and use some data mining techniques.</p>
 </div>
 <div id="r-cookbook-amazon" class="section level4">
-<h4><span class="header-section-number">3.1.0.5</span> R Cookbook <a href="http://www.amazon.com/Cookbook-OReilly-Cookbooks-Paul-Teetor/dp/0596809158/">[Amazon]</a></h4>
+<h4><span class="header-section-number">4.1.0.5</span> R Cookbook <a href="http://www.amazon.com/Cookbook-OReilly-Cookbooks-Paul-Teetor/dp/0596809158/">[Amazon]</a></h4>
 <p><img src="http://ecx.images-amazon.com/images/I/51ZWUV2DEyL._SX379_BO1,204,203,200_.jpg" width="200px"/></p>
 <p>With more than 200 practical recipes, this book helps you perform data analysis with R quickly and efficiently. The R language provides everything you need to do statistical work, but its structure can be difficult to master. This collection of concise, task-oriented recipes makes you productive with R immediately, with solutions ranging from basic tasks to input and output, general statistics, graphics, and linear regression.</p>
 </div>
 <div id="learn-r-in-a-day-amazon" class="section level4">
-<h4><span class="header-section-number">3.1.0.6</span> Learn R in a Day <a href="http://www.amazon.com/Learn-R-Day-Steven-Murray-ebook/">[Amazon]</a></h4>
+<h4><span class="header-section-number">4.1.0.6</span> Learn R in a Day <a href="http://www.amazon.com/Learn-R-Day-Steven-Murray-ebook/">[Amazon]</a></h4>
 <p><img src="http://ecx.images-amazon.com/images/I/4184UusYfJL._SX345_BO1,204,203,200_.jpg" width="200px"/></p>
 <p>‘Learn R in a Day’ provides the reader with key programming skills through an examples-oriented approach and is ideally suited for academics, scientists, mathematicians and engineers. The book assumes no prior knowledge of computer programming and progressively covers all the essential steps needed to become confident and proficient in using R within a day. Topics include how to input, manipulate, format, iterate (loop), query, perform basic statistics on, and plot data, via a step-by-step technique and demonstrations using in-built datasets which the reader is encouraged to replicate on their computer. Each chapter also includes exercises (with solutions) to practice key skills and empower the reader to build on the essentials gained during this introductory course.</p>
 </div>
 <div id="r-inferno-online-free" class="section level4">
-<h4><span class="header-section-number">3.1.0.7</span> R Inferno <a href="http://www.burns-stat.com/pages/Tutor/R_inferno.pdf">[Online]</a> <em>Free</em></h4>
+<h4><span class="header-section-number">4.1.0.7</span> R Inferno <a href="http://www.burns-stat.com/pages/Tutor/R_inferno.pdf">[Online]</a> <em>Free</em></h4>
 <p><img src="http://www.burns-stat.com/wp-content/uploads/2012/11/R_inferno_cover.jpg" width="200px"/></p>
 <p>“If you are using R and you think you’re in hell, this is a map for you.”</p>
 <p>This is a great introduction to several aspects of R programming. Loading data into R, iterating over data with loops &amp; logic statements, author even touches on creating packages. Nice and pretty thorough book on R.</p>
 </div>
 <div id="the-r-programming-wikiboo-online" class="section level4">
-<h4><span class="header-section-number">3.1.0.8</span> The R Programming Wikiboo <a href="https://en.wikibooks.org/wiki/R_Programming">[online]</a></h4>
+<h4><span class="header-section-number">4.1.0.8</span> The R Programming Wikiboo <a href="https://en.wikibooks.org/wiki/R_Programming">[online]</a></h4>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Wikibooks-logo-en.svg" width="200px"/></p>
 <p>A collaborative book about R on the wikibooks website. Anyone can improve it.</p>
 </div>
 <div id="data-munging-with-r-manning" class="section level4">
-<h4><span class="header-section-number">3.1.0.9</span> Data Munging with R <a href="https://www.manning.com/books/data-munging-with-r">[Manning]</a></h4>
+<h4><span class="header-section-number">4.1.0.9</span> Data Munging with R <a href="https://www.manning.com/books/data-munging-with-r">[Manning]</a></h4>
 <p><img src="https://images.manning.com/720/960/resize/book/7/3003658-da45-49c5-94a8-b7a38e6d3088/Carroll-DataM-MEAP-HI.png" width="200px"/></p>
 <p>Data Munging with R shows you how to take raw data and transform it for use in computations, tables, graphs, and more. Whether you already have some programming experience or you’re just a spreadsheet whiz looking for a more powerful data manipulation tool, this book will help you get started.</p>
 <p>You’ll discover the ins and outs of using the data-oriented R programming language and its many task-specific packages. With dozens of practical examples to follow, learn to fill in missing values, make predictions, and visualize data as graphs. By the time you’re done, you’ll be a master munger, with a robust, reproducible workflow and the skills to use data to strengthen your conclusions!</p>
 </div>
 <div id="r-for-data-science-online-free" class="section level4">
-<h4><span class="header-section-number">3.1.0.10</span> R for Data Science <a href="http://r4ds.had.co.nz/">[Online]</a> <em>Free</em></h4>
+<h4><span class="header-section-number">4.1.0.10</span> R for Data Science <a href="http://r4ds.had.co.nz/">[Online]</a> <em>Free</em></h4>
 <p><img src="http://ecx.images-amazon.com/images/I/51XHOt2Tt8L._SY344_BO1,204,203,200_.jpg" width="200px"/></p>
 <p>Learn how to use R to turn raw data into insight, knowledge, and understanding. This book introduces you to R, RStudio, and the <em><a href="https://www.tidyverse.org/">tidyverse</a></em>, a collection of R packages designed to work together to make data science fast, fluent, and fun. Suitable for readers with no previous programming experience, R for Data Science is designed to get you doing data science as quickly as possible.</p>
 </div>
 </div>
 <div id="advanced-books" class="section level2">
-<h2><span class="header-section-number">3.2</span> Advanced Books</h2>
+<h2><span class="header-section-number">4.2</span> Advanced Books</h2>
 <div id="advanced-r-online-amazon-free" class="section level4">
-<h4><span class="header-section-number">3.2.0.1</span> Advanced R <a href="http://adv-r.had.co.nz/">[Online]</a> <a href="http://www.amazon.com/dp/1466586966/">[Amazon]</a> <em>Free</em></h4>
+<h4><span class="header-section-number">4.2.0.1</span> Advanced R <a href="http://adv-r.had.co.nz/">[Online]</a> <a href="http://www.amazon.com/dp/1466586966/">[Amazon]</a> <em>Free</em></h4>
 <p><img src="http://ecx.images-amazon.com/images/I/41Lb4gmBobL._SY344_BO1,204,203,200_.jpg" width="200px"/></p>
 <p>Advanced R presents useful tools and techniques for attacking many types of R programming problems, helping you avoid mistakes and dead ends. With more than ten years of experience programming in R, the author illustrates the elegance, beauty, and flexibility at the heart of R.</p>
 </div>
 <div id="data-manipulation-with-r-second-edition-packt" class="section level4">
-<h4><span class="header-section-number">3.2.0.2</span> Data Manipulation with R, Second Edition <a href="https://www.packtpub.com/big-data-and-business-intelligence/data-manipulation-r-second-edition">[Packt]</a></h4>
+<h4><span class="header-section-number">4.2.0.2</span> Data Manipulation with R, Second Edition <a href="https://www.packtpub.com/big-data-and-business-intelligence/data-manipulation-r-second-edition">[Packt]</a></h4>
 <p><img src="http://ecx.images-amazon.com/images/I/51Jwp-z343L._SX403_BO1,204,203,200_.jpg" width="200px" /></p>
 <p>This book starts with the installation of R and how to go about using R and its libraries. We then discuss the mode of R objects and its classes and then highlight different R data types with their basic operations.</p>
 <p>The primary focus on group-wise data manipulation with the split-apply-combine strategy has been explained with specific examples. The book also contains coverage of some specific libraries such as lubridate, reshape2, plyr, dplyr, stringr, and sqldf. You will not only learn about group-wise data manipulation, but also learn how to efficiently handle date, string, and factor variables along with different layouts of datasets using the reshape2 package.</p>
@@ -302,46 +309,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="data-science" class="section level2">
-<h2><span class="header-section-number">3.3</span> Data Science</h2>
+<h2><span class="header-section-number">4.3</span> Data Science</h2>
 <div id="mastering-data-science-with-r-packt" class="section level4">
-<h4><span class="header-section-number">3.3.0.1</span> Mastering Data Science with R <a href="https://www.packtpub.com/big-data-and-business-intelligence/mastering-data-analysis-r">[Packt]</a></h4>
+<h4><span class="header-section-number">4.3.0.1</span> Mastering Data Science with R <a href="https://www.packtpub.com/big-data-and-business-intelligence/mastering-data-analysis-r">[Packt]</a></h4>
 <p><img src="https://www.packtpub.com/sites/default/files/2028OS_1981_Mastering%20Data%20Analysis%20with%20R.jpg" width="200px"/></p>
 <p>This book will give you the guidance you need to build and develop your knowledge and expertise. Bridging the gap between theory and practice, this book will help you to understand and use data for a competitive advantage.</p>
 <p>Beginning with taking you through essential data mining and management tasks such as munging, fetching, cleaning, and restructuring, the book then explores different model designs and the core components of effective analysis. You will then discover how to optimize your use of machine learning algorithms for classification and recommendation systems beside the traditional and more recent statistical methods.</p>
 </div>
 <div id="practical-data-science-with-r-amazon" class="section level4">
-<h4><span class="header-section-number">3.3.0.2</span> Practical Data Science with R <a href="http://www.amazon.com/Practical-Data-Science-Nina-Zumel/dp/1617291560">[Amazon]</a></h4>
+<h4><span class="header-section-number">4.3.0.2</span> Practical Data Science with R <a href="http://www.amazon.com/Practical-Data-Science-Nina-Zumel/dp/1617291560">[Amazon]</a></h4>
 <p><img src="http://ecx.images-amazon.com/images/I/51SklHvc%2BZL._SX397_BO1,204,203,200_.jpg" width="200px"/></p>
 <p>Practical Data Science with R shows you how to apply the R programming language and useful statistical techniques to everyday business situations. Using examples from marketing, business intelligence, and decision support, it shows you how to design experiments (such as A/B tests), build predictive models, and present results to audiences of all levels.</p>
 <p>This book is accessible to readers without a background in data science. Some familiarity with basic statistics, R, or another scripting language is assumed.</p>
 </div>
 <div id="r-in-action-data-analysis-and-graphics-with-r-amazon" class="section level4">
-<h4><span class="header-section-number">3.3.0.3</span> R in Action: Data Analysis and Graphics with R <a href="http://www.amazon.com/gp/product/1617291382">[Amazon]</a></h4>
+<h4><span class="header-section-number">4.3.0.3</span> R in Action: Data Analysis and Graphics with R <a href="http://www.amazon.com/gp/product/1617291382">[Amazon]</a></h4>
 <p><img src="http://ecx.images-amazon.com/images/I/41cUuaLl2PL._SX396_BO1,204,203,200_.jpg" width="200px"/></p>
 <p>With more than 200 practical recipes, this book helps you perform data analysis with R quickly and efficiently. The R language provides everything you need to do statistical work, but its structure can be difficult to master. This collection of concise, task-oriented recipes makes you productive with R immediately, with solutions ranging from basic tasks to input and output, general statistics, graphics, and linear regression.</p>
 </div>
 <div id="r-programming-for-data-science-leanpub-free" class="section level4">
-<h4><span class="header-section-number">3.3.0.4</span> R Programming for Data Science <a href="https://leanpub.com/rprogramming">[Leanpub]</a> <em>Free</em></h4>
+<h4><span class="header-section-number">4.3.0.4</span> R Programming for Data Science <a href="https://leanpub.com/rprogramming">[Leanpub]</a> <em>Free</em></h4>
 <p><img src="https://s3.amazonaws.com/titlepages.leanpub.com/rprogramming/large?1437358922" width="200px"/></p>
 <p>R in Action, Second Edition teaches you how to use the R language by presenting examples relevant to scientific, technical, and business developers. Focusing on practical solutions, the book offers a crash course in statistics, including elegant methods for dealing with messy and incomplete data. You’ll also master R’s extensive graphical capabilities for exploring and presenting data visually. And this expanded second edition includes new chapters on forecasting, data mining, and dynamic report writing.</p>
 </div>
 <div id="exploratory-data-analysis-with-r-leanpub-free" class="section level4">
-<h4><span class="header-section-number">3.3.0.5</span> Exploratory Data Analysis with R <a href="https://leanpub.com/exdata">[Leanpub]</a> <em>Free</em></h4>
+<h4><span class="header-section-number">4.3.0.5</span> Exploratory Data Analysis with R <a href="https://leanpub.com/exdata">[Leanpub]</a> <em>Free</em></h4>
 <p><img src="https://s3.amazonaws.com/titlepages.leanpub.com/exdata/large?1437682450" width="200px"/></p>
 <p>This book teaches you to use R to effectively visualize and explore complex datasets. Exploratory data analysis is a key part of the data science process because it allows you to sharpen your question and refine your modeling strategies. This book is based on the industry-leading Johns Hopkins Data Science Specialization, the most widely subscribed data science training program ever created.</p>
 </div>
 </div>
 <div id="finance" class="section level2">
-<h2><span class="header-section-number">3.4</span> Finance</h2>
+<h2><span class="header-section-number">4.4</span> Finance</h2>
 <div id="introduction-to-r-for-quantitative-finance-packt" class="section level4">
-<h4><span class="header-section-number">3.4.0.1</span> Introduction to R for Quantitative Finance <a href="https://www.packtpub.com/big-data-and-business-intelligence/introduction-r-quantitative-finance">[Packt]</a></h4>
+<h4><span class="header-section-number">4.4.0.1</span> Introduction to R for Quantitative Finance <a href="https://www.packtpub.com/big-data-and-business-intelligence/introduction-r-quantitative-finance">[Packt]</a></h4>
 <p><img src="http://ecx.images-amazon.com/images/I/516emfY3voL._SX404_BO1,204,203,200_.jpg" width="200px"/></p>
 <p>Introduction to R for Quantitative Finance will show you how to solve real-world quantitative finance problems using the statistical computing language R. The book covers diverse topics ranging from time series analysis to fi nancial networks. Each chapter briefl y presents the theory behind specific concepts and deals with solving a diverse range of problems using R with the help of practical examples.</p>
 <p>This book will be your guide on how to use and master R in order to solve quantitative finance problems. This book covers the essentials of quantitative finance, taking you through a number of clear and practical examples in R that will not only help you to understand the theory, but how to effectively deal with your own real-life problems.</p>
 <p>Starting with time series analysis, you will also learn how to optimize portfolios and how asset pricing models work. The book then covers fixed income securities and derivatives such as credit risk management.</p>
 </div>
 <div id="mastering-r-for-quantitative-finance-packt" class="section level4">
-<h4><span class="header-section-number">3.4.0.2</span> Mastering R for Quantitative Finance <a href="https://www.packtpub.com/big-data-and-business-intelligence/mastering-r-quantitative-finance">[Packt]</a></h4>
+<h4><span class="header-section-number">4.4.0.2</span> Mastering R for Quantitative Finance <a href="https://www.packtpub.com/big-data-and-business-intelligence/mastering-r-quantitative-finance">[Packt]</a></h4>
 <p><img src="http://ecx.images-amazon.com/images/I/5197WMSfufL._SX403_BO1,204,203,200_.jpg" width="200px"/></p>
 <p>R is a powerful open source functional programming language that provides high level graphics and interfaces to other languages. Its strength lies in data analysis, graphics, visualization, and data manipulation. R is becoming a widely used modeling tool in science, engineering, and business.</p>
 <p>The book is organized as a step-by-step practical guide to using R. Starting with time series analysis, you will also learn how to forecast the volume for VWAP Trading. Among other topics, the book covers FX derivatives, interest rate derivatives, and optimal hedging. The last chapters provide an overview on liquidity risk management, risk measures, and more.</p>
@@ -349,43 +356,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="machine-learning" class="section level2">
-<h2><span class="header-section-number">3.5</span> Machine Learning</h2>
+<h2><span class="header-section-number">4.5</span> Machine Learning</h2>
 <div id="machine-learning-with-r-amazon-oreilly" class="section level4">
-<h4><span class="header-section-number">3.5.0.1</span> Machine Learning with R <a href="http://www.amazon.com/Machine-Learning-R-Brett-Lantz/dp/1782162143">[Amazon]</a> <a href="http://shop.oreilly.com/product/9781782162148.do">[O’Reilly]</a></h4>
+<h4><span class="header-section-number">4.5.0.1</span> Machine Learning with R <a href="http://www.amazon.com/Machine-Learning-R-Brett-Lantz/dp/1782162143">[Amazon]</a> <a href="http://shop.oreilly.com/product/9781782162148.do">[O’Reilly]</a></h4>
 <p><img src="http://ecx.images-amazon.com/images/I/518PBAYk%2BxL._SX404_BO1,204,203,200_.jpg" width="200px"/></p>
 <p>“Machine Learning with R” is a practical tutorial that uses hands-on examples to step through real-world application of machine learning. Without shying away from the technical details, we will explore Machine Learning with R using clear and practical examples. Well-suited to machine learning beginners or those with experience. Explore R to find the answer to all of your questions.</p>
 </div>
 </div>
 <div id="r-development" class="section level2">
-<h2><span class="header-section-number">3.6</span> R Development</h2>
+<h2><span class="header-section-number">4.6</span> R Development</h2>
 <div id="r-packages-online-amazon" class="section level4">
-<h4><span class="header-section-number">3.6.0.1</span> R Packages <a href="http://r-pkgs.had.co.nz/">[Online]</a> <a href="http://www.amazon.com/dp/1491910593/">[Amazon]</a></h4>
+<h4><span class="header-section-number">4.6.0.1</span> R Packages <a href="http://r-pkgs.had.co.nz/">[Online]</a> <a href="http://www.amazon.com/dp/1491910593/">[Amazon]</a></h4>
 <p><img src="http://r-pkgs.had.co.nz/cover.png" width="200px"/></p>
 <p>Packages are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them, and sample data. In this section you’ll learn how to turn your code into packages that others can easily download and use. Writing a package can seem overwhelming at first. So start with the basics and improve it over time. It doesn’t matter if your first version isn’t perfect as long as the next version is better.</p>
 </div>
 </div>
 <div id="reports" class="section level2">
-<h2><span class="header-section-number">3.7</span> Reports</h2>
+<h2><span class="header-section-number">4.7</span> Reports</h2>
 <div id="dynamic-documents-with-r-and-knitr-second-edition-amazon" class="section level4">
-<h4><span class="header-section-number">3.7.0.1</span> Dynamic Documents with R and knitr, Second Edition <a href="http://www.amazon.com/dp/1498716962/">[Amazon]</a></h4>
+<h4><span class="header-section-number">4.7.0.1</span> Dynamic Documents with R and knitr, Second Edition <a href="http://www.amazon.com/dp/1498716962/">[Amazon]</a></h4>
 <p><img src="http://ecx.images-amazon.com/images/I/516z-S%2BUXjL._SX331_BO1,204,203,200_.jpg" width="200px"/></p>
 <p>Suitable for both beginners and advanced users, Dynamic Documents with R and knitr, Second Edition makes writing statistical reports easier by integrating computing directly with reporting. Reports range from homework, projects, exams, books, blogs, and web pages to virtually any documents related to statistical graphics, computing, and data analysis. The book covers basic applications for beginners while guiding power users in understanding the extensibility of the knitr package.</p>
 </div>
 <div id="report-writing-for-data-science-in-r-leanpub-free" class="section level4">
-<h4><span class="header-section-number">3.7.0.2</span> Report Writing for Data Science in R <a href="https://leanpub.com/reportwriting">[Leanpub]</a> <em>Free</em></h4>
+<h4><span class="header-section-number">4.7.0.2</span> Report Writing for Data Science in R <a href="https://leanpub.com/reportwriting">[Leanpub]</a> <em>Free</em></h4>
 <p><img src="https://s3.amazonaws.com/titlepages.leanpub.com/reportwriting/large?1440030475" width="200px"/></p>
 <p>This book teaches the fundamental concepts and tools behind reporting modern data analyses in a reproducible manner. As data analyses become increasingly complex, the need for clear and reproducible report writing is greater than ever. The material for this book was developed as part of the industry-leading Johns Hopkins Data Science Specialization.</p>
 </div>
 </div>
 <div id="visualization" class="section level2">
-<h2><span class="header-section-number">3.8</span> Visualization</h2>
+<h2><span class="header-section-number">4.8</span> Visualization</h2>
 <div id="r-data-visualization-cookbook-amazon" class="section level4">
-<h4><span class="header-section-number">3.8.0.1</span> R Data Visualization Cookbook <a href="http://www.amazon.com/dp/1466586966/">[Amazon]</a></h4>
+<h4><span class="header-section-number">4.8.0.1</span> R Data Visualization Cookbook <a href="http://www.amazon.com/dp/1466586966/">[Amazon]</a></h4>
 <p><img src="http://ecx.images-amazon.com/images/I/411f0UoYBPL._AA160_.jpg" width="200px"/></p>
 <p>This book is packed with practical recipes, designed to provide you with all the guidance needed to get to grips with data visualization with R. It starts off with the basics of R plots and an introduction to heat maps and customizing them, before gradually taking you through creating interactive maps using the googleVis package, generating choropleth maps and contouring maps, bubble plots, and pie charts. You will then learn how to animate 2D and 3D plots in R. By the end of the book, you will be equipped with the key techniques to create impressive data visualizations with professional efficiency and precision.</p>
 </div>
 <div id="r-graphics-cookbook-amazon" class="section level4">
-<h4><span class="header-section-number">3.8.0.2</span> R Graphics Cookbook <a href="http://www.amazon.com/R-Graphics-Cookbook-Winston-Chang/dp/1449316956">[Amazon]</a></h4>
+<h4><span class="header-section-number">4.8.0.2</span> R Graphics Cookbook <a href="http://www.amazon.com/R-Graphics-Cookbook-Winston-Chang/dp/1449316956">[Amazon]</a></h4>
 <p><img src="http://ecx.images-amazon.com/images/I/51gjgnl23VL._AA160_.jpg" width="200px"/></p>
 <p>This practical guide provides more than 150 recipes to help you generate high-quality graphs quickly, without having to comb through all the details of R’s graphing systems. Each recipe tackles a specific problem with a solution you can apply to your own project, and includes a discussion of how and why the recipe works.</p>
 <p>Most of the recipes use the ggplot2 package, a powerful and flexible way to make graphs in R. If you have a basic understanding of the R language, you’re ready to get started.</p>
@@ -398,17 +405,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="interactive.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="methods.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -451,8 +460,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
