@@ -1,6 +1,6 @@
 # Methods flashboard {#flash}
 
-```{r setup, include=FALSE}
+```{r setup1, include=FALSE}
 rm(list = ls())
 library(readxl)
 library(tidyverse)

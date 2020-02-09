@@ -3,7 +3,7 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="./">A simple template for projects</a></li>
+        <li><a href="./">Combining shiny and Rmarkdown templates for projects</a></li>
       after: |
         <li><a href="https://github.com/davan690/Combining-Shiny-R-Markdown" target="blank">Published with bookdown</a></li>
     edit: https://github.com/davan690/Combining-Shiny-R-Markdown/docs/%s
@@ -15,5 +15,4 @@ bookdown::pdf_book:
   citation_package: natbib
   keep_tex: yes
 bookdown::epub_book: default
-rmarkdown::word_document:
-  referenece_docx: template3.docx
+rmarkdown::word_document: default
